@@ -23,5 +23,9 @@ public class NoticeService {
 	public NoticeDto findById(Long noticeNo) {
 		return noticeMapper.findById(noticeNo);
 	}
+	
+	public void save(NoticeDto notice) {
+		noticeMapper.save(notice);
+	}
 
 }
