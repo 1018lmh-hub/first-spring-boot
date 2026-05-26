@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;study/src/main/resources/application.properties&apos; to &apos;afdasdf.properties&apos;" description="Rename resource &apos;application.properties&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/application.properties" name="afdasdf.properties" stamp="1779780165840" updateReferences="true"/>
+</session>

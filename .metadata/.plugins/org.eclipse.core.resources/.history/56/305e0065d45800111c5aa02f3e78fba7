@@ -1,0 +1,5 @@
+spring.application.name=study
+server.port=80
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:XE
+spring.datasource.username=C#MH
+spring.datasource.password=MH

@@ -1,0 +1,43 @@
+package com.kh.study;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+public class BeanConfig {
+	/*
+	 * 
+	 * spring MVC 에서는 빈으로 등록해야할 때
+	 * 
+	 * root-context.xml에 가서
+	 * 
+	 * <bean class="풀클래스명" id="식별자">
+	 * 	<property 필드값/>
+	 * </bean>
+	 * 
+	 */
+	
+	@Bean
+	public StudyBean study() {
+		return new StudyBean();
+	}
+	
+	@Bean
+	public StudyBoot studyBoot() {
+		return new StudyBoot();
+	}
+	
+	/*
+	 * @Configuration
+	 * 
+	 * 스프링에서 설정 클래스를 정의할 때 사용
+	 * 하나 이상의 @Bean이 담긴 메소드를 포함해서 스프링컨테이너에 빈으로 등록하는 역할
+	 * 
+	 * @Bean
+	 * 
+	 * @Configuration 클래스 내부에서 메소드에 달려서 스프링 빈을 생성함
+	 * 메소드의 반환값이 스프링 컨테이너에서 빈으로 등록됨
+	 */
+
+}

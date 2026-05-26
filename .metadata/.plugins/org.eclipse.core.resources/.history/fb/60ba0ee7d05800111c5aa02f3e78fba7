@@ -1,0 +1,30 @@
+package com.kh.study;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("study")
+public class StudyController {
+	
+	/*
+	 * Spring Starter
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	
+	@Autowired
+	private StudyBean studyBean;
+
+	@GetMapping
+	public String test() {
+		return "돌아갑니다용";
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.kh.study.notice.model.service;
+
+import org.springframework.stereotype.Service;
+
+import com.kh.study.notice.model.dao.NoticeMapper;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class NoticeService {
+	
+	private final NoticeMapper noticeMapper;
+	
+	public List<NoticeDto> findAll(Long noticeNo){
+		return noticeMapper.findById(noticeNo)
+	}
+
+}
