@@ -4,15 +4,29 @@ package com.kh.study.notice.model.dto;
 //@NoArgsConstructor
 public class NoticeDto {
 
-	private Long noticeNo;
+
 	private String noticeTitle;
-	private String noticeContent;
 	private String noticeWriter;
+	private String noticeContent;
+	private String createDate;
 	
 
 	public NoticeDto() {
 		super();
 	}
+	
+	
+
+	public NoticeDto(String noticeTitle, String noticeWriter, String noticeContent, String createDate, Long noticeNo) {
+		super();
+		this.noticeTitle = noticeTitle;
+		this.noticeWriter = noticeWriter;
+		this.noticeContent = noticeContent;
+		this.createDate = createDate;
+		this.noticeNo = noticeNo;
+	}
+
+
 
 	public NoticeDto(Long noticeNo, String noticeTitle, String noticeContent, String noticeWriter) {
 		super();
@@ -53,12 +67,23 @@ public class NoticeDto {
 	public void setNoticeWriter(String noticeWriter) {
 		this.noticeWriter = noticeWriter;
 	}
+	private Long noticeNo;
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 
 	@Override
 	public String toString() {
-		return "NoticeDto [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", noticeWriter=" + noticeWriter + "]";
+		return "NoticeDto [noticeTitle=" + noticeTitle + ", noticeWriter=" + noticeWriter + ", noticeContent="
+				+ noticeContent + ", createDate=" + createDate + ", noticeNo=" + noticeNo + "]";
 	}
+
+
+
 	
 	
 	
