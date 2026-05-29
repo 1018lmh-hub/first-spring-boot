@@ -1,0 +1,15 @@
+package com.kh.study.landscape.model.service;
+
+public class LandscapeService {
+
+	public String getRes(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getDetail(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

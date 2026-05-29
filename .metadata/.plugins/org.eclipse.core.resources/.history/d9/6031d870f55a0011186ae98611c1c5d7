@@ -1,0 +1,19 @@
+package com.kh.study.busan.model.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class BusanService {
+
+	public String getRes(int page) {
+	
+		return null;
+	}
+
+	public String getDetail(int seq) {
+	
+		return null;
+	}
+
+	
+}

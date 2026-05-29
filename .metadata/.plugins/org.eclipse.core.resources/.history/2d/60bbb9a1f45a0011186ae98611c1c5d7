@@ -1,0 +1,17 @@
+package com.kh.study.busan.model.service;
+
+
+public class BusanService {
+
+	public String getRes(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getDetail(int seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

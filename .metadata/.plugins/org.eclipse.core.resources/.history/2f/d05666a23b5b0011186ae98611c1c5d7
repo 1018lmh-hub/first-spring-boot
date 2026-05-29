@@ -1,0 +1,25 @@
+package com.kh.study.landscape.model.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.study.landscape.model.dao.landscapeMapper;
+
+@Service
+public class LandscapeService {
+
+	@Autowired
+	private landscapeMapper mapper;
+	
+	public String getRes(int page) {
+		String url = "";
+		url += "&pageNo=" +page;
+		return null;
+	}
+
+	public String getDetail(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.kh.study.busan.model.dao;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+import com.kh.study.busan.model.dto.ReviewDto;
+
+@Mapper 
+public interface ReviewMapper {
+	
+	@Insert("INSERT INTO REVIEW VALUES(#{usSeq}, #{content}, SYSDATE, #{rating}")
+	public void save(ReviewDto review);
+
+}

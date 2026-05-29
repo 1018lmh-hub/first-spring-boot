@@ -1,0 +1,18 @@
+package com.kh.study.busan.model.dto;
+
+import java.sql.Date;
+
+public class ReviewDto {
+
+	private Long ucSeq;
+	private String content;
+	private Integer rating;
+	private Date createDate;
+	
+	
+	
+	
+
+	
+	
+}
