@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kh.study.busan.model.dao.ReviewMapper;
 import com.kh.study.busan.model.dto.ReviewDto;
+import com.kh.study.busan.model.dto.UpdateReviewDto;
 
 @Service
 public class BusanService {
@@ -61,6 +62,17 @@ public class BusanService {
 	public List<ReviewDto> findBySeq(Long ucSeq) {
 
 		return mapper.findBySeq(ucSeq);
+	}
+
+	public void update(Long ucSeq, UpdateReviewDto urd) {
+		urd.setUcSeq(ucSeq);
+		
+		
+	}
+
+	public void delete(Long ucSeq, UpdateReviewDto urd) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
