@@ -1,9 +1,0 @@
-package com.kh.study.notice.model.dao;
-
-import org.apache.ibatis.annotations.Mapper;
-
-@Mapper
-public class NoticeMapper {
-	
-
-}

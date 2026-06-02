@@ -3,7 +3,9 @@ package com.kh.semi.exception;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -16,6 +18,16 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+	@ExceptionHandler(CustomAuthenticationException.class)
+	public ResponseEntity<ErrorResponse> handlerAuthenticationError(CustomAuthenticationException e){
+		return ResponseEntity.badRequest().body(new ErrorResponse(400, e.getMessage(), null));
+	}
+	
+	@ExceptionHandler(UsernameNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handlerUsernameFound(UsernameNotFoundException e){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(404,"존재하지 않는 자원", null));
+	}
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> handlerArgumentsNotValid(MethodArgumentNotValidException e){
 		/*
