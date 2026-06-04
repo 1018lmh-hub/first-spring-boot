@@ -1,5 +1,0 @@
-package com.kh.study.reply.model.dao;
-
-public interface ReplyMapper {
-
-}

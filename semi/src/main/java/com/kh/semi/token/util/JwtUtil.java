@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import javax.crypto.SecretKey;
 
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.kh.semi.auth.model.vo.CustomUserDetails;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -48,8 +48,8 @@ public class JwtUtil {
 				   .issuedAt(new Date())
 //				   .expiration(new Date(System.currentTimeMillis() + (1000 * 60 * 15)))
 //				   .expiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMinutes(15)))
-				   .expiration(Date.from(Instant.now().plus(Duration.ofMinutes(15))))
-				   .claim("memberName", user.getMemberName())
+				   .expiration(Date.from(Instant.now().plus(Duration.ofMinutes(600))))
+				   .claim("memberName", user.getMemberName())// 보통 accessToken이랑 RefreshToken은 여기서 타입으로 구분  
 				   .signWith(key)
 				   .compact();
 	}
@@ -62,7 +62,7 @@ public class JwtUtil {
 	 * 
 	 * 세미 프로젝트 조
 	 * 
-	 * 아이 재미써
+
 	 * 
 	 * 5444
 	 * 
@@ -73,7 +73,6 @@ public class JwtUtil {
 	 * 오늘의 할 일
 	 * 
 	 * 첫번째 : 자기소개
-	 * (쉽지 않음..)
 	 * 팀 이름 정하기
 	 * 우리는 아침에 8시에 모여서 회의를 하자
 	 * 우리는 점심시간에 밥을 30까지 먹고~
@@ -99,4 +98,23 @@ public class JwtUtil {
 	 * 
 	 * 
 	 */
+
+	public String getRefreshToken(CustomUserDetails user) {
+		
+		return Jwts.builder()
+				   .subject(user.getUsername())
+				   .issuedAt(new Date())
+				   .expiration(Date.from(Instant.now().plus(Duration.ofDays(5))))
+				   .claim("memberName", user.getMemberName())
+				   .signWith(key)
+				   .compact();
+	}
+	
+	public Claims parseJwt(String token) {
+		return Jwts.parser()
+				   .verifyWith(key)
+				   .build()
+				   .parseSignedClaims(token)
+				   .getPayload();
+	}
 }

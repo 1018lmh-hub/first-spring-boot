@@ -1,12 +1,20 @@
 package com.kh.semi.member.controller;
 
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kh.semi.auth.model.vo.CustomUserDetails;
 import com.kh.semi.member.model.dto.MemberDto;
+import com.kh.semi.member.model.dto.UpdatePasswordDto;
 import com.kh.semi.member.model.service.MemberService;
 
 import jakarta.validation.Valid;
@@ -90,6 +98,31 @@ public class MemberController {
 	 * 성능 확장(Scale up, RAM을 꽂는다던가 부품 추가)
 	 * 
 	 */
+	
+	//비밀번호 변경 기능
+	@PatchMapping						//SpringSecurity => AuthenticationPrincipalArgumentsResolver
+	public ResponseEntity<?> changePassword(@AuthenticationPrincipal CustomUserDetails user,
+											@RequestBody @Valid UpdatePasswordDto upd){
+		//1. 요청 시 전달값은 뭘 가져올까
+		// 	 아이디, 변경 전 비밀번호, 변경 후 비밀번호
+		//2. 비밀번호 값에 대한 유효성 검증
+		//3. 지금 요청을 보낸 사용자가 입력한 기존의 비밀번호가 DB에 저장된거랑 매칭이 잘 되는 지 확인
+		//4. 새로 입력한 비밀번호에 대한 암호화 작업
+		//5. DB에 가서 UPDATE
+		
+		log.info("요청이 잘 넘어오나{}/{}", user, upd);
+		memberService.changePassword(user,upd);
+		return ResponseEntity.ok().build();
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<Void> deleteByPassword(@RequestBody Map<String, String> password,
+												 @AuthenticationPrincipal CustomUserDetails user){
+		
+		memberService.deleteByPassword(password.get("password"), user);
+		
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
 
 }
 

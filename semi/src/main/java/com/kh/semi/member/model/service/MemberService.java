@@ -4,11 +4,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.semi.auth.model.vo.CustomUserDetails;
+import com.kh.semi.exception.CustomAuthenticationException;
 import com.kh.semi.exception.DuplicateMemberIdException;
 import com.kh.semi.exception.FailSignUpException;
 import com.kh.semi.member.model.dao.MemberMapper;
 import com.kh.semi.member.model.dto.MemberDto;
+import com.kh.semi.member.model.dto.UpdatePasswordDto;
 import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.token.model.dao.TokenMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 
 	private final MemberMapper memberMapper;
+	private final TokenMapper tokenMapper;// 근데 여기다 의존성 주입(객체 생성)해도 되나
 	private final PasswordEncoder passwordEncoder;
 	
 	/*
@@ -62,6 +67,40 @@ public class MemberService {
 			throw new FailSignUpException("잠시 후 다시 시도해주세요.");
 		}
 		
+	}
+
+	@Transactional
+	public void changePassword(CustomUserDetails user, UpdatePasswordDto upd) {
+		// 사용자가 입력한 기존 비밀번호, DB에 저장된 기존 비밀번호 암호문
+		String memberPwd = upd.getMemberPwd();
+		String encodePwd = user.getPassword();
+		
+		/*
+		if(!passwordEncoder.matches(memberPwd, encodePwd)) {
+			throw new CustomAuthenticationException("비밀번호가 일치하지 않습니다.");
+		}
+		*/
+		validatedPassword(memberPwd, encodePwd);
+		
+		String newPassword = passwordEncoder.encode(upd.getUpdatePwd());
+		
+		memberMapper.changePassword(user.getUsername(), newPassword);
+		
+	}
+
+	@Transactional
+	public void deleteByPassword(String password, CustomUserDetails user) {
+		validatedPassword(password, user.getPassword());
+		
+		memberMapper.deleteByPassword(user.getUsername());
+		tokenMapper.deleteToken(user.getUsername());
+	}
+	
+	
+	private void validatedPassword(String rawPassword, String encodingPassword) {
+		if(!passwordEncoder.matches(rawPassword, encodingPassword)) {
+			throw new CustomAuthenticationException("비밀번호가 일치하지 않습니다.");
+		}
 	}
 	
 	//실습 겸 숙제

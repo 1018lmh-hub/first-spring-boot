@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.semi.auth.model.dto.LoginRequestDto;
+import com.kh.semi.auth.model.dto.LoginResponse;
 import com.kh.semi.auth.model.service.AuthService;
 
 import jakarta.validation.Valid;
@@ -44,7 +45,7 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDto lrd){
 		
-		authService.login(lrd);
-		return null;
+		LoginResponse res = authService.login(lrd);
+		return ResponseEntity.ok(res);
 	}
 }
