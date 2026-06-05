@@ -1,5 +1,0 @@
-package com.kh.study.busan.model.dao;
-
-public interface ReviewMapper {
-
-}

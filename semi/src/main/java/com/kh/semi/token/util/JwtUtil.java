@@ -35,7 +35,7 @@ public class JwtUtil {
 //	  .expiration(new Date()).compact();
 	
 	@PostConstruct
-	public void inti() {
+	public void init() {
 //		log.info("{}", secretKey);
 		byte[] arr = Base64.getDecoder().decode(secretKey);
 		this.key = Keys.hmacShaKeyFor(arr);

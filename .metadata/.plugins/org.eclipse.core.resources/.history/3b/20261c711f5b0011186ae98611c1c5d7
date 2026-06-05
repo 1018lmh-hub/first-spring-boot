@@ -1,9 +1,0 @@
-package com.kh.study.busan.model.dto;
-
-public class ReviewDto {
-
-	private Long ucSeq;
-	private String Content;
-	private Integer rating;
-	private Date createDate;
-}
