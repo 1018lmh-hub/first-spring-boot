@@ -48,7 +48,7 @@ public class JwtUtil {
 				   .issuedAt(new Date())
 //				   .expiration(new Date(System.currentTimeMillis() + (1000 * 60 * 15)))
 //				   .expiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMinutes(15)))
-				   .expiration(Date.from(Instant.now().plus(Duration.ofMinutes(600))))
+				   .expiration(Date.from(Instant.now().plus(Duration.ofMinutes(5))))
 				   .claim("memberName", user.getMemberName())// 보통 accessToken이랑 RefreshToken은 여기서 타입으로 구분  
 				   .signWith(key)
 				   .compact();
@@ -104,7 +104,7 @@ public class JwtUtil {
 		return Jwts.builder()
 				   .subject(user.getUsername())
 				   .issuedAt(new Date())
-				   .expiration(Date.from(Instant.now().plus(Duration.ofDays(5))))
+				   .expiration(Date.from(Instant.now().plus(Duration.ofDays(1))))
 				   .claim("memberName", user.getMemberName())
 				   .signWith(key)
 				   .compact();

@@ -35,7 +35,12 @@ public class JwtFilter extends OncePerRequestFilter{
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 		String uri = request.getRequestURI();
-		return uri.equals("/api/auth/login") || uri.equals("/api/auth/refresh");
+		String method = request.getMethod();
+		
+		if("GET".equals(method) && uri.startsWith("/api/boards")) return true;
+		if("GET".equals(method) && uri.startsWith("/api/comments")) return true;
+		
+		return uri.equals("/api/auth/login") || uri.equals("/api/auth/refresh") ;
 		
 	}
 	

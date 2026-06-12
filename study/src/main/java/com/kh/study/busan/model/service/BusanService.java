@@ -65,7 +65,7 @@ public class BusanService {
 	}
 
 	public void update(Long ucSeq, UpdateReviewDto urd) {
-		urd.setUcSeq(ucSeq);
+		//urd.setUcSeq(ucSeq);
 		
 		
 	}

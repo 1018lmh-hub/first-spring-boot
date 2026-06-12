@@ -1,6 +1,8 @@
 package com.kh.semi.board.model.dto;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

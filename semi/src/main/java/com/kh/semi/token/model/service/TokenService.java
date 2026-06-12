@@ -49,7 +49,7 @@ public class TokenService {
 		RefreshToken refreshToken = RefreshToken.builder()
 										    	.memberId(memberId)
 										    	.token(token)
-										    	.expiration(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 5))
+										    	.expiration(System.currentTimeMillis() + (1000 * 60 * 60 * 24))
 										    	.build();
 		tokenMapper.saveToken(refreshToken);
 	}
@@ -71,8 +71,10 @@ public class TokenService {
 		String memberId = claims.getSubject();
 		String memberName = (String)claims.get("memberName");
 		CustomUserDetails user = CustomUserDetails.builder().memberName(memberName).username(memberId).build();
+		Map<String, String> tokens = createTokens(user);
+		saveToken(tokens.get("refreshToken"), memberId);
 		
-		return createTokens(user);
+		return tokens;
 		
 	}
 }
