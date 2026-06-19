@@ -31,6 +31,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\workspace_start_semi_260608_501\practic-workspace\practice"/>
 			<item value="C:\workspace_start_semi_260608_501\first-spring-boot\study"/>
 			<item value="C:\workspace_start_semi_260608_501\first-spring-boot\kor"/>
 			<item value="C:\workspace_start_semi_260608_501\first-spring-boot\semi"/>
@@ -42,6 +43,17 @@
 			<item key="DIALOG_WIDTH" value="888"/>
 			<item key="DIALOG_HEIGHT" value="629"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		</section>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.springsource.ide.eclipse.commons.gettingstarted.wizard.boot.NewSpringBootWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.buildship.ui.creationwizards"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.m2e"/>
+			<item value="org.springsource.ide.eclipse.boot.wizards.category"/>
+		</list>
+		<section name="NewWizard.dialogBounds">
 		</section>
 	</section>
 </section>
